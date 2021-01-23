@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "294930170751",
+    "project_id": "aliasica",
+    "storage_bucket": "aliasica.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294930170751:android:b486f6ff695fd158ed504a",
+        "android_client_info": {
+          "package_name": "surik.simyan.aliasica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294930170751-ptu9t8nd57djm2h3ovcn6625vl6fbp09.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "surik.simyan.aliasica",
+            "certificate_hash": "f3f05012b983faef84bdd44cdd395f5eeae7d970"
+          }
+        },
+        {
+          "client_id": "294930170751-hs4jmm9alhk9khccbektg1b4mtt6q6vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEprG9TVYMYJofekYYFEv_ks9UGMQ4uac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294930170751-hs4jmm9alhk9khccbektg1b4mtt6q6vk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
