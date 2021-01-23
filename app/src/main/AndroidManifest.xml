@@ -12,11 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aliasica">
-        <activity android:name=".play.PlayActivity"></activity>
+        <activity
+            android:name=".play.PlayActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.MainActivity"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".intro.IntroActivity"
             android:noHistory="true"

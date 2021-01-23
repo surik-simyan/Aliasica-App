@@ -1,5 +1,6 @@
 package surik.simyan.aliasica.play.screens
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Editable
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import surik.simyan.aliasica.R
 import surik.simyan.aliasica.databinding.FragmentTeamsBinding
 import surik.simyan.aliasica.play.TeamsRecyclerAdapter
 
@@ -58,12 +60,11 @@ class TeamsFragment : Fragment() {
         binding.teamsFab.setOnClickListener {
             val position = teamsList.size
             val newTeamField = TextInputLayout(getContext)
-            newTeamField.apply {
-                val newTeam = TextInputEditText(getContext)
-                newTeam.hint = "Team ${position + 1}}"
-                addView(newTeam)
-            }
-
+            newTeamField.endIconMode = TextInputLayout.END_ICON_CUSTOM
+            newTeamField.setEndIconDrawable(R.drawable.ic_baseline_remove_circle_24)
+            val newTeam = TextInputEditText(getContext)
+            newTeam.hint = "Team ${position + 1}"
+            newTeamField.addView(newTeam)
             teamsList.add(newTeamField)
             updateRecycler()
         }

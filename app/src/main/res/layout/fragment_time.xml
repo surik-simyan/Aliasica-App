@@ -39,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stepSize="5"
+        android:value="45"
         android:valueFrom="20"
         android:valueTo="120"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,9 +1,11 @@
 package surik.simyan.aliasica.play
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -18,12 +20,9 @@ class TeamsRecyclerAdapter(val context: Context, private var elements: MutableLi
 
     override fun onBindViewHolder(holder: TeamsViewHolder, position: Int) {
         val item = elements[position]
-        holder.teamsEditText?.text = item.editText?.text
+        holder.teamsEditText?.hint = item.editText?.hint
         holder.teamsInputLayout?.setEndIconOnClickListener {
-            if(itemCount > 3){
-                elements.drop(position)
-                notifyDataSetChanged()
-            }
+           Log.d("End","Pressend end icon")
         }
     }
 
