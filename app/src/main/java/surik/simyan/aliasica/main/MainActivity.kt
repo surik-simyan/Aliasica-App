@@ -16,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 import surik.simyan.aliasica.R
 import surik.simyan.aliasica.databinding.ActivityMainBinding
 import surik.simyan.aliasica.main.explore.ExploreFragment
+import surik.simyan.aliasica.main.explore.NewWordsetFragment
 import surik.simyan.aliasica.main.home.HomeFragment
 import surik.simyan.aliasica.main.profile.ProfileFragment
 import surik.simyan.aliasica.play.PlayActivity
@@ -28,6 +29,7 @@ public val db = Firebase.firestore
 val homeFragment = HomeFragment()
 val exploreFragment = ExploreFragment()
 val profileFragment = ProfileFragment()
+val newWordsetFragment = NewWordsetFragment()
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +82,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 FabStates.Explore -> {
-
+                    supportFragmentManager.beginTransaction().apply {
+                        setCustomAnimations(R.animator.nav_default_enter_anim,R.animator.nav_default_exit_anim)
+                        replace(R.id.fragmentHolder, newWordsetFragment)
+                        addToBackStack(null)
+                        commit()
+                    }
                 }
                 else -> {
 

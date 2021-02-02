@@ -14,14 +14,17 @@
         android:theme="@style/Theme.Aliasica">
         <activity
             android:name=".play.PlayActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
             android:name=".main.MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" />
         <activity
             android:name=".intro.IntroActivity"
             android:noHistory="true"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

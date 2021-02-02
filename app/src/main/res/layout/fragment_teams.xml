@@ -8,27 +8,57 @@
     tools:context=".play.screens.TeamsFragment">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/teamsRecyclerView"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/teamOneTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/teamsFab"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:reverseLayout="true"
-        app:stackFromEnd="true" />
+        tools:hint="Team 1">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/teamsFab"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/teamOneTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:textColor="#000000" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/teamTwoTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/teamOneTextField"
+        tools:hint="Team 2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/teamTwoTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:textColor="#000000" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/teamsStartFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        app:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Start Game"
+        app:icon="@drawable/ic_baseline_play_arrow_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_24" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
