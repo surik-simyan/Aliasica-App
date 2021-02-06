@@ -12,7 +12,6 @@ import com.google.android.material.slider.Slider
 import surik.simyan.aliasica.R
 import surik.simyan.aliasica.databinding.FragmentTeamsBinding
 import surik.simyan.aliasica.play.TabsFragment
-import surik.simyan.aliasica.play.TabsFragmentDirections
 import surik.simyan.aliasica.play.game.GameScoreFragment
 import surik.simyan.aliasica.play.game.GameViewModel
 import surik.simyan.aliasica.play.game.viewModel
@@ -29,11 +28,17 @@ class TeamsFragment : Fragment() {
         binding = FragmentTeamsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(GameViewModel::class.java)
 
         binding.teamsStartFab.setOnClickListener {
-            viewModel.teamOneName = binding.teamOneTextInputEditText.text.toString()
-            viewModel.teamTwoName = binding.teamTwoTextInputEditText.text.toString()
+            val teamOneName: String = binding.teamOneTextInputEditText.text.toString()
+            val teamTwoName: String = binding.teamTwoTextInputEditText.text.toString()
+            if(teamOneName.trim().isNotEmpty()){
+                viewModel.teamOneName = teamOneName
+            }
+            if(teamTwoName.trim().isNotEmpty()){
+                viewModel.teamTwoName = teamTwoName
+            }
             activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             view.findNavController().navigate(R.id.action_tabsFragment_to_gameScoreFragment)
         }

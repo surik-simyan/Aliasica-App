@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity() {
             when(it.tag) {
                 FabStates.Home -> {
                     val intentPlay = Intent(this, PlayActivity::class.java)
+                    intentPlay.putExtra("numberOfTabs",4)
                     startActivity(intentPlay)
                 }
 

@@ -23,7 +23,7 @@ class TimeFragment : Fragment() {
         binding = FragmentTimeBinding.inflate(inflater,container,false)
         val view = binding.root
 
-        val viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(GameViewModel::class.java)
 
 
         binding.timeSlider.addOnChangeListener { slider, value, fromUser -> /* `value` is the argument you need */

@@ -1,6 +1,6 @@
 package surik.simyan.aliasica.main.explore
 
-data class WordsetModel (
+data class FirebaseWordsetModel (
     val creator: String? = null,
     val language: String? = null,
     val name: String? = null,

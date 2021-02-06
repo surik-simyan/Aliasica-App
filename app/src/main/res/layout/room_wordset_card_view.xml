@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/mtrl_card_spacing"
+    android:clickable="true"
+    android:focusable="true"
+    android:minHeight="@dimen/cat_card_rich_media_demo_min_height">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/cat_card_double_spacing"
+            android:paddingBottom="@dimen/cat_card_single_spacing">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/cat_card_single_spacing"
+                android:layout_weight="1.0"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/cat_card_single_spacing">
+
+                <TextView
+                    style="?attr/textAppearanceHeadline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Famous People"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/cat_card_single_spacing"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="A famous people names" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/cat_card_single_spacing"
+            android:paddingHorizontal="@dimen/cat_card_single_spacing">
+
+            <com.google.android.material.button.MaterialButton
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/cat_card_single_spacing"
+                android:layout_marginRight="@dimen/cat_card_single_spacing"
+                android:text="Play" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

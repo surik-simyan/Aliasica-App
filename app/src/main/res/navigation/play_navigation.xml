@@ -23,12 +23,20 @@
         <action
             android:id="@+id/action_gameScoreFragment_to_gameStartCountdownFragment"
             app:destination="@id/gameStartCountdownFragment" />
+        <action
+            android:id="@+id/action_gameScoreFragment_to_gameWinnerFragment"
+            app:destination="@id/gameWinnerFragment" />
     </fragment>
     <fragment
         android:id="@+id/gamePlayFragment"
         android:name="surik.simyan.aliasica.play.game.GamePlayFragment"
         android:label="fragment_game_play"
-        tools:layout="@layout/fragment_game_play" />
+        tools:layout="@layout/fragment_game_play" >
+        <action
+            android:id="@+id/action_gamePlayFragment_to_gameScoreFragment"
+            app:destination="@id/gameScoreFragment"
+            app:popUpTo="@id/gameScoreFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gameStartCountdownFragment"
         android:name="surik.simyan.aliasica.play.game.GameStartCountdownFragment"
@@ -37,5 +45,14 @@
         <action
             android:id="@+id/action_gameStartCountdownFragment_to_gamePlayFragment"
             app:destination="@id/gamePlayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameWinnerFragment"
+        android:name="surik.simyan.aliasica.play.game.GameWinnerFragment"
+        android:label="fragment_game_winner"
+        tools:layout="@layout/fragment_game_winner" >
+        <argument
+            android:name="winnerTeam"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -10,20 +10,16 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.firestore.ktx.getField
-import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import surik.simyan.aliasica.R
 import surik.simyan.aliasica.databinding.FragmentExploreBinding
 import surik.simyan.aliasica.main.db
 
 class ExploreFragment : Fragment() {
 
-    private var wordsetList: MutableList<WordsetModel> = mutableListOf<WordsetModel>()
+    private var firebaseWordsetList: MutableList<FirebaseWordsetModel> = mutableListOf<FirebaseWordsetModel>()
     lateinit var wordsetRecyclerAdapter: ExploreRecyclerAdapter
     lateinit var binding: FragmentExploreBinding
 
@@ -34,7 +30,7 @@ class ExploreFragment : Fragment() {
         val view = binding.root
 
         val wordsetRecyclerView: RecyclerView = binding.wordsetRecyclerView
-        wordsetRecyclerAdapter = ExploreRecyclerAdapter(requireContext(),wordsetList)
+        wordsetRecyclerAdapter = ExploreRecyclerAdapter(requireContext(),firebaseWordsetList)
 
         wordsetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         wordsetRecyclerView.adapter = wordsetRecyclerAdapter
@@ -42,12 +38,12 @@ class ExploreFragment : Fragment() {
         binding.wordsetSwipeRefreshLayout.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
         binding.wordsetSwipeRefreshLayout.setColorSchemeColors(Color.WHITE)
 
-        wordsetList.clear()
+        firebaseWordsetList.clear()
         getWordsets()
         updateRecycler()
 
         binding.wordsetSwipeRefreshLayout.setOnRefreshListener {
-            wordsetList.clear()
+            firebaseWordsetList.clear()
             getWordsets()
             updateRecycler()
         }
@@ -61,7 +57,7 @@ class ExploreFragment : Fragment() {
                 .get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        wordsetList.add(document.toObject(WordsetModel::class.java))
+                        firebaseWordsetList.add(document.toObject(FirebaseWordsetModel::class.java))
                         updateRecycler()
                     }
                     binding.wordsetSwipeRefreshLayout.isRefreshing = false
