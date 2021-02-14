@@ -1,20 +1,23 @@
 package surik.simyan.aliasica.main.explore
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import surik.simyan.aliasica.R
+import surik.simyan.aliasica.play.PlayActivity
 import java.util.*
 
-class ExploreRecyclerAdapter(val context: Context, private var elements: List<WordsetModel>) : RecyclerView.Adapter<ExploreViewHolder>() {
+class ExploreRecyclerAdapter(val context: Context, private var elements: List<FirebaseWordsetModel>) : RecyclerView.Adapter<ExploreViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExploreViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.wordset_card_view,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.firebase_wordset_card_view,parent,false)
         return  ExploreViewHolder(view)
     }
 
@@ -30,6 +33,12 @@ class ExploreRecyclerAdapter(val context: Context, private var elements: List<Wo
             val myChip = Chip(context)
             myChip.text = it.capitalize(Locale.ROOT)
             holder.tags?.addView(myChip)
+        }
+        holder.playButton?.setOnClickListener {
+            val intentPlay = Intent(context, PlayActivity::class.java)
+            intentPlay.putExtra("numberOfTabs",3)
+            intentPlay.putStringArrayListExtra ("words", item.words as ArrayList<String>?)
+            context.startActivity(intentPlay)
         }
 
     }
@@ -48,6 +57,8 @@ class ExploreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val rating: TextView?
     val stars: RatingBar?
     val tags: ChipGroup?
+    val playButton: Button?
+    val downloadButton: Button?
 
     init {
         creator = view.findViewById(R.id.wordsetCreatorTextView)
@@ -56,5 +67,7 @@ class ExploreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         rating = view.findViewById(R.id.wordsetRatingTextView)
         stars = view.findViewById(R.id.wordsetRatingBar)
         tags = view.findViewById(R.id.wordsetTagsChipGroup)
+        playButton = view.findViewById(R.id.wordsetPlayButton)
+        downloadButton = view.findViewById(R.id.wordsetDownloadButton)
     }
 }
