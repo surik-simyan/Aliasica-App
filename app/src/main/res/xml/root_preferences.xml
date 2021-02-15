@@ -1,0 +1,28 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:аpp="http://schemas.android.com/tools">
+
+    <PreferenceCategory app:title="Game">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="game_timer"
+            app:summary="Countdown timer before game"
+            аpp:title="Timer" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="game_mode"
+            app:summary="All sounds are turned off"
+            аpp:title="Silent mode" />
+
+
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="game_draw"
+            app:summary="The game ends in a draw if both teams score enough points"
+            аpp:title="Draw mode" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -13,7 +13,6 @@ import android.os.Handler
 import com.google.firebase.auth.FirebaseAuth
 import surik.simyan.aliasica.main.MainActivity
 
-private lateinit var mAuth: FirebaseAuth
 
 class SplashFragment : Fragment() {
     override fun onCreateView(
@@ -22,20 +21,15 @@ class SplashFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        mAuth = FirebaseAuth.getInstance()
-        val user = mAuth.currentUser
-
         Handler().postDelayed({
-            //if (user != null) {
-                val intentMain = Intent(requireActivity(), MainActivity::class.java)
-                startActivity(intentMain)
-            //}
-            /*if(onBoardingFinished())
+
+            if(onBoardingFinished())
             {
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             } else {
-                findNavController().navigate(R.id.action_splashFragment_to_signinFragment)
-            }*/
+               val intentMain = Intent(requireActivity(), MainActivity::class.java)
+                startActivity(intentMain)
+            }
 
 
         }, 1000)

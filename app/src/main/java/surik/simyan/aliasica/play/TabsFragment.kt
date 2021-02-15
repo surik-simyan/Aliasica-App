@@ -1,6 +1,5 @@
 package surik.simyan.aliasica.play
 
-import android.content.Intent.getIntent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,80 +28,37 @@ class TabsFragment : Fragment() {
 
         val viewModel = ViewModelProvider(requireActivity()).get(GameViewModel::class.java)
 
-        val numberOfTabs = requireActivity().intent.getIntExtra("numberOfTabs",3)
+        val numberOfTabs = 3
 
         binding.playTabLayout.tabMode = TabLayout.MODE_AUTO
         binding.playTabLayout.isInlineLabel = true
 
-
-
-        if(numberOfTabs == 3){
-            val adapter = TabsPagerAdapter(requireActivity().supportFragmentManager, lifecycle, numberOfTabs)
-            binding.playViewPager.adapter = adapter
-            binding.playViewPager.isUserInputEnabled = true
-
-            TabLayoutMediator(binding.playTabLayout, binding.playViewPager) { tab, position ->
-                when (position) {
-                    0 -> {
-                        tab.text = "Points"
-                        tab.setIcon(R.drawable.ic_baseline_check_circle_24)
-                    }
-                    1 -> {
-                        tab.text = "Time"
-                        tab.setIcon(R.drawable.ic_baseline_alarm_24)
-
-                    }
-                    2 -> {
-                        tab.text = "Teams"
-                        tab.setIcon(R.drawable.ic_baseline_group_24)
-                    }
-
+        val adapter = TabsPagerAdapter(requireActivity().supportFragmentManager, lifecycle, numberOfTabs)
+        binding.playViewPager.adapter = adapter
+        binding.playViewPager.isUserInputEnabled = true
+        TabLayoutMediator(binding.playTabLayout, binding.playViewPager) { tab, position ->
+            when (position) {
+                0 -> {
+                    tab.text = "Points"
+                    tab.setIcon(R.drawable.ic_baseline_check_circle_24)
                 }
-                // Change color of the icons
-                tab.icon?.colorFilter =
-                        BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                                Color.WHITE,
-                                BlendModeCompat.SRC_ATOP
-                        )
-            }.attach()
-
-            viewModel._words.postValue(requireActivity().intent.getStringArrayListExtra("words"))
-
-        } else {
-            val adapter = TabsPagerFabAdapter(requireActivity().supportFragmentManager, lifecycle, numberOfTabs)
-            binding.playViewPager.adapter = adapter
-            binding.playViewPager.isUserInputEnabled = true
-
-            TabLayoutMediator(binding.playTabLayout, binding.playViewPager) { tab, position ->
-                when (position) {
-                    0 -> {
-                        tab.text = "Wordsets"
-                        tab.setIcon(R.drawable.ic_baseline_article_24)
-                    }
-                    1 -> {
-                        tab.text = "Points"
-                        tab.setIcon(R.drawable.ic_baseline_check_circle_24)
-                    }
-                    2 -> {
-                        tab.text = "Time"
-                        tab.setIcon(R.drawable.ic_baseline_alarm_24)
-                    }
-
-                    3 -> {
-                        tab.text = "Teams"
-                        tab.setIcon(R.drawable.ic_baseline_group_24)
-                    }
-
+                1 -> {
+                    tab.text = "Time"
+                    tab.setIcon(R.drawable.ic_baseline_alarm_24)
                 }
-                // Change color of the icons
-                tab.icon?.colorFilter =
-                        BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                                Color.WHITE,
-                                BlendModeCompat.SRC_ATOP
-                        )
-            }.attach()
-        }
-
+                2 -> {
+                    tab.text = "Teams"
+                    tab.setIcon(R.drawable.ic_baseline_group_24)
+                }
+            }
+            // Change color of the icons
+            tab.icon?.colorFilter =
+                    BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                            Color.WHITE,
+                            BlendModeCompat.SRC_ATOP
+                    )
+        }.attach()
+        viewModel._words.postValue(requireActivity().intent.getStringArrayListExtra("words"))
 
 
         // Inflate the layout for this fragment

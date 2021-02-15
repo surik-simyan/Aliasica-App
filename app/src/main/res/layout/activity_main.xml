@@ -14,37 +14,12 @@
 
     </FrameLayout>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        app:fabCradleMargin="16dp"
-        app:navigationIcon="@drawable/ic_baseline_menu_24"
-        app:fabAlignmentMode="center"
+        app:menu="@menu/bottom_nav_menu"
         android:layout_gravity="bottom" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        style="@style/Theme.Aliasica"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_play_arrow_24"
-        app:backgroundTint="@color/colorAccent"
-        app:layout_anchor="@id/bottomAppBar" />
-
-    <FrameLayout
-        android:id="@+id/bottom_drawer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="16dp"
-        app:behavior_hideable="true"
-        app:layout_behavior="@string/bottom_sheet_behavior">
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:menu="@menu/bottom_nav_menu"/>
-    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -11,11 +11,7 @@
         android:id="@+id/navigation_explore"
         android:icon="@drawable/ic_baseline_explore_24"
         android:title="Explore" />
-
-    <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="Profile" />
+    
 
     <item
         android:id="@+id/navigation_settings"

@@ -10,18 +10,21 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import surik.simyan.aliasica.R
 import surik.simyan.aliasica.databinding.FragmentExploreBinding
-import surik.simyan.aliasica.main.db
+import surik.simyan.aliasica.models.ExploreWordsetModel
 
 class ExploreFragment : Fragment() {
 
-    private var firebaseWordsetList: MutableList<FirebaseWordsetModel> = mutableListOf<FirebaseWordsetModel>()
-    lateinit var wordsetRecyclerAdapter: ExploreRecyclerAdapter
+    private var exploreWordsetList: MutableList<ExploreWordsetModel> = mutableListOf<ExploreWordsetModel>()
+    lateinit var exploreWordsetRecyclerAdapter: ExploreRecyclerAdapter
     lateinit var binding: FragmentExploreBinding
+    val db = Firebase.firestore
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,21 +32,21 @@ class ExploreFragment : Fragment() {
         binding = FragmentExploreBinding.inflate(inflater)
         val view = binding.root
 
-        val wordsetRecyclerView: RecyclerView = binding.wordsetRecyclerView
-        wordsetRecyclerAdapter = ExploreRecyclerAdapter(requireContext(),firebaseWordsetList)
+        val wordsetRecyclerView: RecyclerView = binding.wordsetExploreRecyclerView
+        exploreWordsetRecyclerAdapter = ExploreRecyclerAdapter(requireContext(),exploreWordsetList)
 
         wordsetRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        wordsetRecyclerView.adapter = wordsetRecyclerAdapter
+        wordsetRecyclerView.adapter = exploreWordsetRecyclerAdapter
 
-        binding.wordsetSwipeRefreshLayout.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
-        binding.wordsetSwipeRefreshLayout.setColorSchemeColors(Color.WHITE)
+        binding.wordsetExploreSwipeRefreshLayout.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        binding.wordsetExploreSwipeRefreshLayout.setColorSchemeColors(Color.WHITE)
 
-        firebaseWordsetList.clear()
+        exploreWordsetList.clear()
         getWordsets()
         updateRecycler()
 
-        binding.wordsetSwipeRefreshLayout.setOnRefreshListener {
-            firebaseWordsetList.clear()
+        binding.wordsetExploreSwipeRefreshLayout.setOnRefreshListener {
+            exploreWordsetList.clear()
             getWordsets()
             updateRecycler()
         }
@@ -57,19 +60,20 @@ class ExploreFragment : Fragment() {
                 .get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        firebaseWordsetList.add(document.toObject(FirebaseWordsetModel::class.java))
+                        val wordset = document.toObject(ExploreWordsetModel::class.java)
+                        exploreWordsetList.add(wordset)
                         updateRecycler()
                     }
-                    binding.wordsetSwipeRefreshLayout.isRefreshing = false
+                    binding.wordsetExploreSwipeRefreshLayout.isRefreshing = false
                 }
                 .addOnFailureListener { exception ->
                     Toast.makeText(requireContext(),"Huh, seems you are not connected to internet",Toast.LENGTH_SHORT)
-                    binding.wordsetSwipeRefreshLayout.isRefreshing = false
+                    binding.wordsetExploreSwipeRefreshLayout.isRefreshing = false
                 }
         }
     }
 
     private fun updateRecycler() {
-        wordsetRecyclerAdapter.notifyDataSetChanged()
+        exploreWordsetRecyclerAdapter.notifyDataSetChanged()
     }
 }
