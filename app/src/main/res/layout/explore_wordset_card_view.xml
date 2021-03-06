@@ -30,6 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Wordset One"
                     android:textColor="#000000" />
 
@@ -64,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/cat_card_double_spacing"
                     android:layout_marginBottom="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Tags"
                     android:textColor="#000000" />
 
@@ -89,6 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/cat_card_single_spacing"
                     android:layout_marginRight="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Play" />
 
                 <com.google.android.material.button.MaterialButton
@@ -98,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/cat_card_single_spacing"
                     android:layout_marginRight="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Download" />
 
             </LinearLayout>

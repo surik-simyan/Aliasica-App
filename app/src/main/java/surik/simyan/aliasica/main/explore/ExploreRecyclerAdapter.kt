@@ -1,13 +1,11 @@
 package surik.simyan.aliasica.main.explore
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import kotlinx.coroutines.Dispatchers
@@ -16,11 +14,10 @@ import kotlinx.coroutines.launch
 import surik.simyan.aliasica.R
 import surik.simyan.aliasica.database.DownloadedWordsetDatabase
 import surik.simyan.aliasica.models.ExploreWordsetModel
-import surik.simyan.aliasica.models.HomeWordsetModel
-import surik.simyan.aliasica.play.PlayActivity
+import surik.simyan.aliasica.models.toHomeWordset
 import java.util.*
 
-class ExploreRecyclerAdapter(val context: Context, private var elements: List<ExploreWordsetModel>) : RecyclerView.Adapter<ExploreViewHolder>() {
+class ExploreRecyclerAdapter(val context: Context, private var elements: List<ExploreWordsetModel>, val exploreWordsetButtonsClickListener: ExploreWordsetButtonsClickListener) : RecyclerView.Adapter<ExploreViewHolder>() {
 
     var downloadedDB = DownloadedWordsetDatabase.getInstance(context)
 
@@ -43,17 +40,11 @@ class ExploreRecyclerAdapter(val context: Context, private var elements: List<Ex
         }
 
         holder.playButton?.setOnClickListener {
-            val intentPlay = Intent(context, PlayActivity::class.java)
-            intentPlay.putExtra("numberOfTabs",3)
-            intentPlay.putStringArrayListExtra ("words", item.words as ArrayList<String>?)
-            context.startActivity(intentPlay)
+            exploreWordsetButtonsClickListener.onPlayClick(item)
         }
 
         holder.downloadButton?.setOnClickListener {
-            GlobalScope.launch (Dispatchers.IO) {
-
-                notifyDataSetChanged()
-            }
+            exploreWordsetButtonsClickListener.onDownloadClick(item)
         }
 
     }
@@ -81,4 +72,9 @@ class ExploreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         playButton = view.findViewById(R.id.exploreWordsetPlayButton)
         downloadButton = view.findViewById(R.id.exploreWordsetDownloadButton)
     }
+}
+
+interface ExploreWordsetButtonsClickListener {
+    fun onDownloadClick(item: ExploreWordsetModel)
+    fun onPlayClick(item: ExploreWordsetModel)
 }

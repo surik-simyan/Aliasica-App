@@ -26,12 +26,15 @@
         <action
             android:id="@+id/action_gameScoreFragment_to_gameWinnerFragment"
             app:destination="@id/gameWinnerFragment" />
+        <action
+            android:id="@+id/action_gameScoreFragment_to_gamePlayFragment"
+            app:destination="@id/gamePlayFragment" />
     </fragment>
     <fragment
         android:id="@+id/gamePlayFragment"
         android:name="surik.simyan.aliasica.play.game.GamePlayFragment"
         android:label="fragment_game_play"
-        tools:layout="@layout/fragment_game_play" >
+        tools:layout="@layout/fragment_game_play1" >
         <action
             android:id="@+id/action_gamePlayFragment_to_gameScoreFragment"
             app:destination="@id/gameScoreFragment"

@@ -7,45 +7,43 @@
     android:padding="16dp"
     tools:context=".play.screens.TeamsFragment">
 
-
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/teamOneTextField"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/firstTeamTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintTextColor="?android:textColorHint"
+        android:hint="Team One"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:hint="Team 1">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/teamOneTextInputEditText"
+            android:id="@+id/firstTeamTextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="12"
+            android:maxLength="8"
             android:maxLines="1"
+            android:inputType="text"
             android:textColor="#000000" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/teamTwoTextField"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/secondTeamTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:hint="Team Two"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/teamOneTextField"
-        tools:hint="Team 2">
+        app:layout_constraintTop_toBottomOf="@id/firstTeamTextInput">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/teamTwoTextInputEditText"
+            android:id="@+id/secondTeamTextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="12"
+            android:maxLength="8"
             android:maxLines="1"
+            android:inputType="text"
             android:textColor="#000000" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -54,12 +52,12 @@
         android:id="@+id/teamsStartFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorAccent"
         android:text="Start Game"
         app:icon="@drawable/ic_baseline_play_arrow_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

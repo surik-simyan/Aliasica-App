@@ -30,6 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Wordset Name"
                     android:textColor="#000000" />
 
@@ -39,6 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/cat_card_double_spacing"
+                    android:fontFamily="@font/roboto"
                     android:singleLine="true"
                     android:text="Creator Name"
                     android:textColor="#000000" />
@@ -48,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto"
                     android:maxLines="2"
                     android:text="Wordset Language" />
 
@@ -64,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/cat_card_double_spacing"
                     android:layout_marginBottom="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Tags"
                     android:textColor="#000000" />
 
@@ -89,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/cat_card_single_spacing"
                     android:layout_marginRight="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Play" />
 
                 <com.google.android.material.button.MaterialButton
@@ -98,6 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/cat_card_single_spacing"
                     android:layout_marginRight="@dimen/cat_card_single_spacing"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Delete" />
 
             </LinearLayout>

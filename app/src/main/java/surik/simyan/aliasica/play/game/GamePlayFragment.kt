@@ -1,8 +1,12 @@
 package surik.simyan.aliasica.play.game
 
+import android.content.Context
+import android.content.SharedPreferences
 import surik.simyan.aliasica.R
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaPlayer
+import android.media.SoundPool
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,11 +20,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import surik.simyan.aliasica.databinding.FragmentGamePlayBinding
 
 
 lateinit var binding: FragmentGamePlayBinding
 lateinit var viewModel: GameViewModel
+lateinit var sharedPreferences: SharedPreferences
+lateinit var wordGuessedSoundPool: SoundPool
+private val soundId = 1
+
 
 class GamePlayFragment : Fragment() {
 
@@ -33,6 +42,13 @@ class GamePlayFragment : Fragment() {
         })
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        wordGuessedSoundPool = SoundPool.Builder().build()
+        wordGuessedSoundPool.load(context,R.raw.game_word_guessed, 1)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,8 +58,6 @@ class GamePlayFragment : Fragment() {
         binding = FragmentGamePlayBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(GameViewModel::class.java)
         val view = binding.root
-
-
 
         binding.gamePlayTeamNameTextView.apply {
             if(viewModel.playingTeam == PlayingTeam.TeamOne){
@@ -96,7 +110,7 @@ class GamePlayFragment : Fragment() {
 
         viewModel.changeWords()
 
-        Toast.makeText(context,viewModel.points.toString(), Toast.LENGTH_SHORT).show()
+        resetingWordsView()
 
         //Word Click Listeners
         binding.apply {
@@ -130,38 +144,47 @@ class GamePlayFragment : Fragment() {
 
     fun resetingWordsView (){
         binding.apply {
-            gamePlayWordOneTextView.setBackgroundColor(Color.parseColor("#E2E2E2"))
+            gamePlayWordOneTextView.setBackgroundColor(Color.parseColor("#FFFFFF"))
             gamePlayWordOneTextView.tag = "Unclicked"
 
-            gamePlayWordTwoTextView.setBackgroundColor(Color.parseColor("#E2E2E2"))
+            gamePlayWordTwoTextView.setBackgroundColor(Color.parseColor("#FFFFFF"))
             gamePlayWordTwoTextView.tag = "Unclicked"
 
-            gamePlayWordThreeTextView.setBackgroundColor(Color.parseColor("#E2E2E2"))
+            gamePlayWordThreeTextView.setBackgroundColor(Color.parseColor("#FFFFFF"))
             gamePlayWordThreeTextView.tag = "Unclicked"
 
-            gamePlayWordFourTextView.setBackgroundColor(Color.parseColor("#E2E2E2"))
+            gamePlayWordFourTextView.setBackgroundColor(Color.parseColor("#FFFFFF"))
             gamePlayWordFourTextView.tag = "Unclicked"
 
-            gamePlayWordFiveTextView.setBackgroundColor(Color.parseColor("#E2E2E2"))
+            gamePlayWordFiveTextView.setBackgroundColor(Color.parseColor("#FFFFFF"))
             gamePlayWordFiveTextView.tag = "Unclicked"
-
-            viewModel._isFiveWordsGuessed.postValue(false)
-            viewModel.wordsGuessed = 0
         }
     }
 
     private fun wordClicked(view: View) {
 
-        if(view.tag == "Unclicked") {
-            view.setBackgroundColor(Color.parseColor("#E2E2E2"))
-            view.tag = "Clicked"
-            viewModel.addPoint()
+        if(!sharedPreferences.getBoolean("game_mode",false)){
+            if(view.tag == "Unclicked") {
+                view.setBackgroundColor(Color.parseColor("#E2E2E2"))
+                view.tag = "Clicked"
+                viewModel.addPoint()
+            } else {
+                view.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                view.tag = "Unclicked"
+                viewModel.minusPoints()
+            }
         } else {
-            view.setBackgroundColor(Color.parseColor("#FFFFFF"))
-            view.tag = "Unclicked"
-            viewModel.minusPoints()
+            if(view.tag == "Unclicked") {
+                view.setBackgroundColor(Color.parseColor("#E2E2E2"))
+                view.tag = "Clicked"
+                wordGuessedSoundPool.play(soundId, 1F, 1F, 0, 0, 1F)
+                viewModel.addPoint()
+            } else {
+                view.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                view.tag = "Unclicked"
+                viewModel.minusPoints()
+            }
         }
 
     }
-
 }

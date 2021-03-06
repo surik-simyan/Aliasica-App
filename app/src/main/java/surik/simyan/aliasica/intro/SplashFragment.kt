@@ -22,16 +22,13 @@ class SplashFragment : Fragment() {
     ): View? {
 
         Handler().postDelayed({
-
             if(onBoardingFinished())
             {
-                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
-            } else {
-               val intentMain = Intent(requireActivity(), MainActivity::class.java)
+                val intentMain = Intent(requireActivity(), MainActivity::class.java)
                 startActivity(intentMain)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             }
-
-
         }, 1000)
 
         // Inflate the layout for this fragment
@@ -39,8 +36,8 @@ class SplashFragment : Fragment() {
     }
 
     private fun onBoardingFinished(): Boolean{
-        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        return sharedPref.getBoolean("Finished", false)
+        val sharedPref = requireActivity().getSharedPreferences("onboarding", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("finished",false)
     }
     
 }

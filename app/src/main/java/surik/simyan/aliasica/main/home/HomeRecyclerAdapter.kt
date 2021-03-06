@@ -23,7 +23,7 @@ import surik.simyan.aliasica.models.HomeWordsetModel
 import surik.simyan.aliasica.play.PlayActivity
 import java.util.*
 
-class HomeRecyclerAdapter(val context: Context, private var elements: List<HomeWordsetModel>) : RecyclerView.Adapter<HomeViewHolder>() {
+class HomeRecyclerAdapter(val context: Context, private var elements: List<HomeWordsetModel>, val homeWordsetButtonsClickListener : HomeWordsetButtonsClickListener) : RecyclerView.Adapter<HomeViewHolder>() {
 
     var downloadedDB = DownloadedWordsetDatabase.getInstance(context)
 
@@ -45,17 +45,11 @@ class HomeRecyclerAdapter(val context: Context, private var elements: List<HomeW
         }
 
         holder.playButton?.setOnClickListener {
-            val intentPlay = Intent(context, PlayActivity::class.java)
-            intentPlay.putExtra("numberOfTabs",3)
-            intentPlay.putStringArrayListExtra ("words", item.words as ArrayList<String>?)
-            context.startActivity(intentPlay)
+            homeWordsetButtonsClickListener.onPlayClick(item)
         }
 
         holder.deleteButton?.setOnClickListener {
-            GlobalScope.launch (Dispatchers.IO) {
-                downloadedDB.getWordsetDao().delete(item)
-
-            }
+            homeWordsetButtonsClickListener.onDeleteClick(item)
         }
     }
 
@@ -81,4 +75,9 @@ class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         playButton = view.findViewById(R.id.homeWordsetPlayButton)
         deleteButton = view.findViewById(R.id.homeWordsetDeleteButton)
     }
+}
+
+interface HomeWordsetButtonsClickListener {
+    fun onDeleteClick(item: HomeWordsetModel)
+    fun onPlayClick(item: HomeWordsetModel)
 }

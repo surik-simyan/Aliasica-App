@@ -69,12 +69,17 @@ class GameViewModel : ViewModel() {
     var winnerTeam = ""
 
     //All Words
-    val allWords = ArrayList<String>()
+    var allWordsArrayList = ArrayList<String>()
+    var allWords = mutableListOf<String>()
 
-    //All List
+    //Five Words
     val _words = MutableLiveData<List<String>>()
     fun words () : LiveData<List<String>> {
         return _words
+    }
+
+    fun fillAllWords() {
+        allWords = allWordsArrayList
     }
 
 
@@ -121,6 +126,9 @@ class GameViewModel : ViewModel() {
 
         allWords.add(allWords.size,allWords[4])
         allWords.removeAt(4)
+
+        _isFiveWordsGuessed.postValue(false)
+        wordsGuessed = 0
     }
 
     fun gameFinished(){
@@ -159,6 +167,11 @@ class GameViewModel : ViewModel() {
 
     fun stopTimer() {
         timer?.cancel()
+    }
+
+    fun shuffleWords ()
+    {
+        allWords.shuffle()
     }
 
 }

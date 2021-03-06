@@ -26,7 +26,7 @@ class TimeFragment : Fragment() {
         val viewModel = ViewModelProvider(requireActivity()).get(GameViewModel::class.java)
 
 
-        binding.timeSlider.addOnChangeListener { slider, value, fromUser -> /* `value` is the argument you need */
+        binding.timeSlider.addOnChangeListener { _, value, _ -> /* `value` is the argument you need */
             viewModel.time = value
         }
 

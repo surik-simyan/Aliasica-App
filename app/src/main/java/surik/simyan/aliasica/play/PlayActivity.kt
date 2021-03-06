@@ -3,6 +3,7 @@ package surik.simyan.aliasica.play
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +26,9 @@ class PlayActivity : AppCompatActivity() {
         setContentView(view)
         supportActionBar?.hide()
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        val words = intent.getStringArrayListExtra("words")
+        viewModel.allWordsArrayList = words!!
+        viewModel.shuffleWords()
         if(viewModel._teamOnePoints.value == null){
             viewModel._teamOnePoints.value = 0
         }

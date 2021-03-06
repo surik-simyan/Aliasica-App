@@ -5,23 +5,18 @@
     <PreferenceCategory app:title="Game">
 
         <SwitchPreferenceCompat
+            android:title="Timer"
             app:defaultValue="true"
+            app:icon="@drawable/ic_baseline_alarm_24"
             app:key="game_timer"
-            app:summary="Countdown timer before game"
-            аpp:title="Timer" />
+            app:summary="Countdown timer before game" />
 
         <SwitchPreferenceCompat
             app:defaultValue="false"
             app:key="game_mode"
+            app:icon="@drawable/ic_baseline_notifications_off_24"
             app:summary="All sounds are turned off"
-            аpp:title="Silent mode" />
-
-
-        <SwitchPreferenceCompat
-            app:defaultValue="false"
-            app:key="game_draw"
-            app:summary="The game ends in a draw if both teams score enough points"
-            аpp:title="Draw mode" />
+            android:title="Silent mode" />
 
     </PreferenceCategory>
 

@@ -26,8 +26,6 @@ class TabsFragment : Fragment() {
         binding = FragmentTabsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val viewModel = ViewModelProvider(requireActivity()).get(GameViewModel::class.java)
-
         val numberOfTabs = 3
 
         binding.playTabLayout.tabMode = TabLayout.MODE_AUTO
@@ -58,7 +56,6 @@ class TabsFragment : Fragment() {
                             BlendModeCompat.SRC_ATOP
                     )
         }.attach()
-        viewModel._words.postValue(requireActivity().intent.getStringArrayListExtra("words"))
 
 
         // Inflate the layout for this fragment

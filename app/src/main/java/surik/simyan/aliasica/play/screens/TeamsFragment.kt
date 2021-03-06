@@ -24,22 +24,21 @@ class TeamsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val getContext = requireContext()
         binding = FragmentTeamsBinding.inflate(inflater, container, false)
         val view = binding.root
 
         viewModel = ViewModelProvider(requireActivity()).get(GameViewModel::class.java)
 
         binding.teamsStartFab.setOnClickListener {
-            val teamOneName: String = binding.teamOneTextInputEditText.text.toString()
-            val teamTwoName: String = binding.teamTwoTextInputEditText.text.toString()
+            val teamOneName: String = binding.firstTeamTextInputEditText.text.toString()
+            val teamTwoName: String = binding.secondTeamTextInputEditText.text.toString()
+            viewModel.fillAllWords()
             if(teamOneName.trim().isNotEmpty()){
                 viewModel.teamOneName = teamOneName
             }
             if(teamTwoName.trim().isNotEmpty()){
                 viewModel.teamTwoName = teamTwoName
             }
-            activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             view.findNavController().navigate(R.id.action_tabsFragment_to_gameScoreFragment)
         }
 
